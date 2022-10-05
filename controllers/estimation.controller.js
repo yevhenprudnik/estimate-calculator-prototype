@@ -2,22 +2,34 @@ const estimationService = require('../services/estimation.service');
 
 class EstimationController {
   
-  async startEstimation(req, res){
-    const firstQuestion = await estimationService.startEstimation();
+  async startEstimation(req, res, next){
+    try {
+      const firstQuestion = await estimationService.startEstimation();
 
-    res.json(firstQuestion);
+      res.json(firstQuestion);
+    } catch (error) {
+      next(error);
+    }
   }
 
-  async estimation(req, res){
-    const nextQuestions = await estimationService.estimate(req.body);
+  async estimation(req, res, next){
+    try {
+      const nextQuestions = await estimationService.estimate(req.body);
 
-    res.json(nextQuestions)
+      res.json(nextQuestions)
+    } catch (error) {
+      next(error);
+    }
   }
 
-  async back(req, res){
-    const previousQuestion = await estimationService.back(req.body);
+  async back(req, res, next){
+    try {
+      const previousQuestion = await estimationService.back(req.body);
 
-    res.json(previousQuestion);
+      res.json(previousQuestion);
+    } catch (error) {
+      next(error);
+    }
   }
 
 }

@@ -2,22 +2,34 @@ const questionsService = require('../services/question.service');
 
 class QuestionsController {
   
-  async addQuestion(req, res){
-    const question = await questionsService.addQuestion(req.body);
+  async addQuestion(req, res, next){
+    try {
+      const question = await questionsService.addQuestion(req.body);
 
-    res.json(question);
+      res.json(question);
+    } catch (error) {
+      next(error);
+    }
   }
 
-  async updateQuestion(req, res){
-    const question = await questionsService.updateQuestion(req.body);
+  async updateQuestion(req, res, next){
+    try {
+      const question = await questionsService.updateQuestion(req.body);
 
-    res.json(question);
+      res.json(question);
+    } catch (error) {
+      next(error);
+    }
   }
 
-  async getQuestions(req, res){
-    const questions = await questionsService.getQuestions(req.body);
+  async getQuestions(req, res, next){
+    try {
+      const questions = await questionsService.getQuestions(req.body);
 
-    res.json(questions);
+      res.json(questions);
+    } catch (error) {
+      next(error);
+    }
   }
 
 }

@@ -14,7 +14,7 @@ class QuestionsService {
   }
 
   async getQuestions(){
-    return questionModel.find().populate({ path: 'parent options', select: 'title'});
+    return questionModel.find().populate({ path: 'parents options', select: 'title'});
   }
 
 }
